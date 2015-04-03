@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3wo-i7-vEY">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <scenes>
+        <!--Meme Editor-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController title="Meme Editor" id="vXZ-lx-hvc" customClass="EditorViewController" customModule="Meme_Me" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mny-Cy-6FY">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="82w-DX-b4L">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Kyg-hp-jyP"/>
+                                    <barButtonItem systemItem="camera" id="UtL-zx-YWy"/>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="yU8-Dt-aMY"/>
+                                    <barButtonItem title="Album" id="1dT-J7-Sk3"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="I2V-cm-PRj"/>
+                                </items>
+                            </toolbar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="BOTTOM" placeholder="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Ez-Yz-UBy">
+                                <rect key="frame" x="0.0" y="460" width="600" height="56"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="48"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="TOP" placeholder="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EUM-fx-Oaw" userLabel="TOP">
+                                <rect key="frame" x="0.0" y="104" width="600" height="56"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="48"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="EUM-fx-Oaw" secondAttribute="centerX" id="1Kd-fo-mVJ"/>
+                            <constraint firstAttribute="centerX" secondItem="7Ez-Yz-UBy" secondAttribute="centerX" id="5M7-LG-rbB"/>
+                            <constraint firstItem="EUM-fx-Oaw" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="40" id="BTt-Ll-u5a"/>
+                            <constraint firstAttribute="centerX" secondItem="mny-Cy-6FY" secondAttribute="centerX" id="ICt-bI-zan"/>
+                            <constraint firstAttribute="width" secondItem="mny-Cy-6FY" secondAttribute="width" id="IWj-xL-DPk"/>
+                            <constraint firstAttribute="centerY" secondItem="mny-Cy-6FY" secondAttribute="centerY" id="Im0-ln-yXQ"/>
+                            <constraint firstAttribute="height" secondItem="mny-Cy-6FY" secondAttribute="height" id="Kel-Mc-vbJ"/>
+                            <constraint firstItem="82w-DX-b4L" firstAttribute="top" secondItem="7Ez-Yz-UBy" secondAttribute="bottom" constant="40" id="Klk-Am-u1L"/>
+                            <constraint firstAttribute="width" secondItem="EUM-fx-Oaw" secondAttribute="width" id="aaz-iN-4uy"/>
+                            <constraint firstAttribute="width" secondItem="82w-DX-b4L" secondAttribute="width" id="bsM-w6-9kC"/>
+                            <constraint firstAttribute="centerX" secondItem="82w-DX-b4L" secondAttribute="centerX" id="c1o-hF-HhE"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="82w-DX-b4L" secondAttribute="bottom" id="diG-Uv-a1K"/>
+                            <constraint firstAttribute="width" secondItem="7Ez-Yz-UBy" secondAttribute="width" id="u32-sD-zYT"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="NUd-dv-YyK" userLabel="Top Nav Bar">
+                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="vbU-nR-Rrx"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="ZvW-4J-YZg"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bottomText" destination="7Ez-Yz-UBy" id="dk6-q1-Axy"/>
+                        <outlet property="topText" destination="EUM-fx-Oaw" id="4Or-6n-83G"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1117" y="420"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="9ja-Mi-ZQB">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3wo-i7-vEY" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FcX-w3-Mzd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="pdH-vp-cGr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zan-S5-Urf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="305" y="1081"/>
+        </scene>
+    </scenes>
+</document>
