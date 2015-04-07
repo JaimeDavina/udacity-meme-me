@@ -29,17 +29,23 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="I2V-cm-PRj"/>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="BOTTOM" placeholder="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Ez-Yz-UBy">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Ez-Yz-UBy">
                                 <rect key="frame" x="0.0" y="460" width="600" height="56"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="48"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                <connections>
+                                    <action selector="didBeginEditingBottomText:" destination="vXZ-lx-hvc" eventType="editingDidBegin" id="dpU-bW-St0"/>
+                                </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="TOP" placeholder="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EUM-fx-Oaw" userLabel="TOP">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="TOP" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EUM-fx-Oaw" userLabel="TOP">
                                 <rect key="frame" x="0.0" y="104" width="600" height="56"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="48"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                <connections>
+                                    <action selector="didBeginEditingTopText:" destination="vXZ-lx-hvc" eventType="editingDidBegin" id="6hl-Xt-Ej4"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -52,11 +58,11 @@
                             <constraint firstAttribute="centerY" secondItem="mny-Cy-6FY" secondAttribute="centerY" id="Im0-ln-yXQ"/>
                             <constraint firstAttribute="height" secondItem="mny-Cy-6FY" secondAttribute="height" id="Kel-Mc-vbJ"/>
                             <constraint firstItem="82w-DX-b4L" firstAttribute="top" secondItem="7Ez-Yz-UBy" secondAttribute="bottom" constant="40" id="Klk-Am-u1L"/>
-                            <constraint firstAttribute="width" secondItem="EUM-fx-Oaw" secondAttribute="width" id="aaz-iN-4uy"/>
                             <constraint firstAttribute="width" secondItem="82w-DX-b4L" secondAttribute="width" id="bsM-w6-9kC"/>
                             <constraint firstAttribute="centerX" secondItem="82w-DX-b4L" secondAttribute="centerX" id="c1o-hF-HhE"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="82w-DX-b4L" secondAttribute="bottom" id="diG-Uv-a1K"/>
-                            <constraint firstAttribute="width" secondItem="7Ez-Yz-UBy" secondAttribute="width" id="u32-sD-zYT"/>
+                            <constraint firstItem="EUM-fx-Oaw" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" id="gUq-qG-Fkc"/>
+                            <constraint firstAttribute="width" secondItem="7Ez-Yz-UBy" secondAttribute="width" id="w8L-WX-ROG"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="NUd-dv-YyK" userLabel="Top Nav Bar">
