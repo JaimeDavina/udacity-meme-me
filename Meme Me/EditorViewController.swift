@@ -8,13 +8,18 @@
 
 import UIKit
 
-class EditorViewController: UIViewController {
+class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var topText: UITextField!
     @IBOutlet weak var bottomText: UITextField!
     let topPlaceholderText = "TOP"
     let bottomPlaceholderText = "BOTTOM"
+    var currentTextField: UITextField?
    
+    @IBOutlet weak var memeImageView: UIImageView!
+    
+    @IBOutlet weak var cameraButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,6 +34,11 @@ class EditorViewController: UIViewController {
         bottomText.defaultTextAttributes = memeTextAttributes
         topText.textAlignment = NSTextAlignment.Center
         bottomText.textAlignment = NSTextAlignment.Center
+        
+        topText.delegate = self
+        bottomText.delegate = self
+        
+        cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -40,22 +50,42 @@ class EditorViewController: UIViewController {
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
     }
-   
-    @IBAction func didBeginEditingTopText(sender: UITextField) {
-        if sender.text! == topPlaceholderText {
-            sender.text = ""
-        }
-    }
-    @IBAction func didBeginEditingBottomText(sender: UITextField) {
-        if sender.text! == bottomPlaceholderText {
-            sender.text = ""
-        }
-    }
-    @IBAction func didEndEditingTopText(sender: UITextField) {
-    }
-    @IBAction func didEndEditingBottomText(sender: UITextField) {
+    
+    // MARK: - TextField
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        hidePlaceholderText(textField)
+        currentTextField = textField
     }
     
+    func textFieldDidEndEditing(textField: UITextField) {
+        showPlaceholderText(textField)
+        currentTextField = nil
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    private func hidePlaceholderText(textField: UITextField) {
+        if textField == topText && textField.text! == topPlaceholderText {
+            textField.text = ""
+        }
+        if textField == bottomText && textField.text! == bottomPlaceholderText {
+            textField.text = ""
+        }
+    }
+    
+    private func showPlaceholderText(textField: UITextField) {
+        if textField == topText && textField.text! == "" {
+            textField.text = topPlaceholderText
+        }
+        if textField == bottomText && textField.text! == "" {
+            textField.text = bottomPlaceholderText
+        }
+    }
+   
     // MARK: - Keyboard
     func subscribeToKeyboardNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
@@ -68,7 +98,11 @@ class EditorViewController: UIViewController {
     }
     
     func keyboardWillShow(notification: NSNotification) {
-        self.view.frame.origin.y -= getKeyboardHeight(notification)
+        if let textField = currentTextField {
+            if textField == bottomText {
+                self.view.frame.origin.y -= getKeyboardHeight(notification)
+            }
+        }
     }
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
@@ -78,9 +112,25 @@ class EditorViewController: UIViewController {
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        self.view.frame.origin.y += getKeyboardHeight(notification)
+        self.view.frame.origin.y = 0
     }
-
-
+    
+    @IBAction func didPressAlbum(sender: UIBarButtonItem) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        presentViewController(picker, animated: true, completion: nil)
+    }
+    
+    @IBAction func didPressCamera(sender: UIBarButtonItem) {
+        let picker = UIImagePickerController()
+    }
+    
+    // MARK: - UIImagePickerControllerDelegate
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            memeImageView.image = image
+        }
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 }
-

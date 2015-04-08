@@ -16,16 +16,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mny-Cy-6FY">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mny-Cy-6FY">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="82w-DX-b4L">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Kyg-hp-jyP"/>
-                                    <barButtonItem systemItem="camera" id="UtL-zx-YWy"/>
+                                    <barButtonItem systemItem="camera" id="UtL-zx-YWy">
+                                        <connections>
+                                            <action selector="didPressCamera:" destination="vXZ-lx-hvc" id="GXp-tc-G8q"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="yU8-Dt-aMY"/>
-                                    <barButtonItem title="Album" id="1dT-J7-Sk3"/>
+                                    <barButtonItem title="Album" id="1dT-J7-Sk3">
+                                        <connections>
+                                            <action selector="didPressAlbum:" destination="vXZ-lx-hvc" id="9jT-WD-sYX"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="I2V-cm-PRj"/>
                                 </items>
                             </toolbar>
@@ -34,18 +42,12 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="48"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
-                                <connections>
-                                    <action selector="didBeginEditingBottomText:" destination="vXZ-lx-hvc" eventType="editingDidBegin" id="dpU-bW-St0"/>
-                                </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="TOP" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EUM-fx-Oaw" userLabel="TOP">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EUM-fx-Oaw" userLabel="TOP">
                                 <rect key="frame" x="0.0" y="104" width="600" height="56"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="48"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
-                                <connections>
-                                    <action selector="didBeginEditingTopText:" destination="vXZ-lx-hvc" eventType="editingDidBegin" id="6hl-Xt-Ej4"/>
-                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -71,6 +73,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bottomText" destination="7Ez-Yz-UBy" id="dk6-q1-Axy"/>
+                        <outlet property="cameraButton" destination="UtL-zx-YWy" id="n7x-64-g2e"/>
+                        <outlet property="memeImageView" destination="mny-Cy-6FY" id="T4s-dD-2LN"/>
                         <outlet property="topText" destination="EUM-fx-Oaw" id="4Or-6n-83G"/>
                     </connections>
                 </viewController>
