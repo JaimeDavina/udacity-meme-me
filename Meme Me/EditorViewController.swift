@@ -16,6 +16,7 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     let bottomPlaceholderText = "BOTTOM"
     var currentTextField: UITextField?
    
+    @IBOutlet weak var bottomToolbar: UIToolbar!
     @IBOutlet weak var memeImageView: UIImageView!
     
     @IBOutlet weak var cameraButton: UIBarButtonItem!
@@ -44,6 +45,7 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()
+        hideToolbars()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -113,6 +115,42 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     
     func keyboardWillHide(notification: NSNotification) {
         self.view.frame.origin.y = 0
+    }
+    
+    
+    @IBAction func didPressActivity(sender: UIBarButtonItem) {
+        let image = makeMemeImage()
+        println(self.view.frame)
+        let activity = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        activity.completionWithItemsHandler = { Void in
+            println(self.view.frame)
+        }
+        presentViewController(activity, animated: true, completion: nil)
+    }
+    
+    @IBOutlet weak var bottomToolbarVerticalSpaceConstraint: NSLayoutConstraint!
+    private func makeMemeImage() -> UIImage {
+        hideToolbars()
+        
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.drawViewHierarchyInRect(view.frame, afterScreenUpdates: true)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        showToolbars()
+        
+        return image
+    }
+    
+    private func hideToolbars() {
+        navigationController?.toolbarHidden = true
+        bottomToolbar.hidden = true
+    }
+    private func showToolbars() {
+        navigationController?.toolbarHidden = false
+        bottomToolbar.hidden = false
+    }
+    
+    @IBAction func didPressCancel(sender: UIBarButtonItem) {
     }
     
     @IBAction func didPressAlbum(sender: UIBarButtonItem) {

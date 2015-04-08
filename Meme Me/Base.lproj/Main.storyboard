@@ -19,7 +19,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mny-Cy-6FY">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="82w-DX-b4L">
+                            <toolbar clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82w-DX-b4L">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Kyg-hp-jyP"/>
@@ -68,11 +68,21 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="NUd-dv-YyK" userLabel="Top Nav Bar">
-                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="vbU-nR-Rrx"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="ZvW-4J-YZg"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="vbU-nR-Rrx">
+                            <connections>
+                                <action selector="didPressActivity:" destination="vXZ-lx-hvc" id="Fjp-py-AUu"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="ZvW-4J-YZg">
+                            <connections>
+                                <action selector="didPressCancel:" destination="vXZ-lx-hvc" id="ImN-zN-tLw"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="bottomText" destination="7Ez-Yz-UBy" id="dk6-q1-Axy"/>
+                        <outlet property="bottomToolbar" destination="82w-DX-b4L" id="zgK-Fs-GbP"/>
+                        <outlet property="bottomToolbarVerticalSpaceConstraint" destination="diG-Uv-a1K" id="h1z-4U-gk6"/>
                         <outlet property="cameraButton" destination="UtL-zx-YWy" id="n7x-64-g2e"/>
                         <outlet property="memeImageView" destination="mny-Cy-6FY" id="T4s-dD-2LN"/>
                         <outlet property="topText" destination="EUM-fx-Oaw" id="4Or-6n-83G"/>
