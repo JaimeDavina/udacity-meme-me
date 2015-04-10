@@ -17,6 +17,7 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     var currentTextField: UITextField?
    
     @IBOutlet weak var bottomToolbar: UIToolbar!
+    @IBOutlet weak var topToolbar: UIToolbar!
     @IBOutlet weak var memeImageView: UIImageView!
     
     @IBOutlet weak var cameraButton: UIBarButtonItem!
@@ -45,7 +46,6 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()
-        hideToolbars()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -109,7 +109,7 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
         let userInfo = notification.userInfo
-        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as NSValue // of CGRect
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
         return keyboardSize.CGRectValue().height
     }
     
@@ -120,7 +120,6 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     
     @IBAction func didPressActivity(sender: UIBarButtonItem) {
         let image = makeMemeImage()
-        println(self.view.frame)
         let activity = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         activity.completionWithItemsHandler = { Void in
             println(self.view.frame)
@@ -130,23 +129,21 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     
     @IBOutlet weak var bottomToolbarVerticalSpaceConstraint: NSLayoutConstraint!
     private func makeMemeImage() -> UIImage {
-        hideToolbars()
         
         UIGraphicsBeginImageContext(view.frame.size)
         view.drawViewHierarchyInRect(view.frame, afterScreenUpdates: true)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        showToolbars()
         
         return image
     }
     
     private func hideToolbars() {
-        navigationController?.toolbarHidden = true
+        topToolbar.hidden = true
         bottomToolbar.hidden = true
     }
     private func showToolbars() {
-        navigationController?.toolbarHidden = false
+        topToolbar.hidden = true
         bottomToolbar.hidden = false
     }
     
@@ -161,6 +158,9 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     
     @IBAction func didPressCamera(sender: UIBarButtonItem) {
         let picker = UIImagePickerController()
+        picker.sourceType = UIImagePickerControllerSourceType.Camera
+        picker.delegate = self
+        presentViewController(picker, animated: true, completion: nil)
     }
     
     // MARK: - UIImagePickerControllerDelegate
