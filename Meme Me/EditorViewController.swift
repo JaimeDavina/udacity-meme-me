@@ -121,13 +121,21 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     @IBAction func didPressActivity(sender: UIBarButtonItem) {
         let image = makeMemeImage()
         let activity = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-        activity.completionWithItemsHandler = { Void in
-            println(self.view.frame)
+        activity.completionWithItemsHandler = { (type: String!, completed: Bool, returnedItems: [AnyObject]!, error: NSError!) in
+            if completed {
+                var meme = Meme(
+                    top: self.topText.text,
+                    bottom: self.bottomText.text,
+                    image: self.memeImageView.image!,
+                    memedImage: image
+                )
+                meme.save()
+            }
         }
         presentViewController(activity, animated: true, completion: nil)
     }
     
-    @IBOutlet weak var bottomToolbarVerticalSpaceConstraint: NSLayoutConstraint!
+    
     private func makeMemeImage() -> UIImage {
         
         UIGraphicsBeginImageContext(view.frame.size)
