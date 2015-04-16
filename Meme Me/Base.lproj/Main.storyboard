@@ -8,16 +8,31 @@
         <scene sceneID="lmh-QC-tjk">
             <objects>
                 <tableViewController id="DnI-fL-Oef" customClass="MemeTableViewController" customModule="Meme_Me" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="7Cu-Qa-rYv">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="7Cu-Qa-rYv">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="memeTableCell" id="kRv-d6-B2M">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="memeTableCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="memeTableCell" rowHeight="100" id="kRv-d6-B2M" customClass="MemeTableCell" customModule="Meme_Me" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kRv-d6-B2M" id="qgl-8E-A6t">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rEO-PL-9Lb">
+                                            <rect key="frame" x="29" y="0.0" width="141" height="99"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQA-CJ-Jig">
+                                            <rect key="frame" x="178" y="43" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="memeImageView" destination="rEO-PL-9Lb" id="x6w-Hm-IEK"/>
+                                    <outlet property="memeLabel" destination="iQA-CJ-Jig" id="TRK-Vj-FLe"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -164,11 +179,12 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="ZvW-4J-YZg">
                             <connections>
-                                <action selector="didPressCancel:" destination="vXZ-lx-hvc" id="ImN-zN-tLw"/>
+                                <action selector="didPressCancel:" destination="vXZ-lx-hvc" id="763-SN-w5a"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityButton" destination="vbU-nR-Rrx" id="N4j-dV-8EV"/>
                         <outlet property="bottomText" destination="7Ez-Yz-UBy" id="dk6-q1-Axy"/>
                         <outlet property="bottomToolbar" destination="82w-DX-b4L" id="zgK-Fs-GbP"/>
                         <outlet property="cameraButton" destination="UtL-zx-YWy" id="n7x-64-g2e"/>
@@ -184,7 +200,6 @@
         <!--Editor Navigation Controller-->
         <scene sceneID="9ja-Mi-ZQB">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Zan-S5-Urf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="editorNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="3wo-i7-vEY" userLabel="Editor Navigation Controller" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="FcX-w3-Mzd">
@@ -196,6 +211,7 @@
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="pdH-vp-cGr"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zan-S5-Urf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1681" y="-733"/>
         </scene>

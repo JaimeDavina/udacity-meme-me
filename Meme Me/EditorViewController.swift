@@ -21,6 +21,7 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     @IBOutlet weak var memeImageView: UIImageView!
     
     @IBOutlet weak var cameraButton: UIBarButtonItem!
+    @IBOutlet weak var activityButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,7 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         bottomText.delegate = self
         
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        activityButton.enabled = false
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -156,6 +158,7 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     }
     
     @IBAction func didPressCancel(sender: UIBarButtonItem) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func didPressAlbum(sender: UIBarButtonItem) {
@@ -176,6 +179,7 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             memeImageView.image = image
+            activityButton.enabled = true
         }
         dismissViewControllerAnimated(true, completion: nil)
     }

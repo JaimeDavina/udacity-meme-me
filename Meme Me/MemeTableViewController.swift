@@ -19,4 +19,9 @@ class MemeTableViewController: UITableViewController, UITableViewDelegate, UITab
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Meme.countAll()
     }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCellWithIdentifier("memeTableCell") as! MemeTableCell
+        return cell
+    }
 }
