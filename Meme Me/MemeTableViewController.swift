@@ -8,13 +8,15 @@
 
 import UIKit
 
-class MemeTableViewController: UITableViewController {
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+class MemeTableViewController: UITableViewController, UITableViewDelegate, UITableViewDataSource {
+   override func viewDidAppear(animated: Bool) {
         if Meme.countAll() == 0 {
-            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             performSegueWithIdentifier("showEditor", sender: self)
         }
+        super.viewDidAppear(animated)
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return Meme.countAll()
     }
 }
