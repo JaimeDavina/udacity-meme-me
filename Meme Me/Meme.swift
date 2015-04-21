@@ -23,20 +23,28 @@ class Meme {
     
     func save() {
         // Add it to the memes array in the Application Delegate
+        Meme.getStorage().memes.append(self)
+    }
+    
+    class func getStorage() -> AppDelegate {
         let object = UIApplication.sharedApplication().delegate
-        let appDelegate = object as! AppDelegate
-        appDelegate.memes.append(self)
+        return object as! AppDelegate
     }
     
     class func findAll() -> [Meme] {
         let object = UIApplication.sharedApplication().delegate
         let appDelegate = object as! AppDelegate
-        return appDelegate.memes
+        return Meme.getStorage().memes
     }
     
     class func countAll() -> Int {
-        let object = UIApplication.sharedApplication().delegate
-        let appDelegate = object as! AppDelegate
-        return appDelegate.memes.count
+        return Meme.getStorage().memes.count
+    }
+    
+    class func getAtIndex(index: Int) -> Meme? {
+        if Meme.getStorage().memes.count > index {
+            return Meme.getStorage().memes[index]
+        }
+        return nil
     }
 }
