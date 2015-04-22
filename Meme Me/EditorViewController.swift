@@ -15,13 +15,16 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     let topPlaceholderText = "TOP"
     let bottomPlaceholderText = "BOTTOM"
     var currentTextField: UITextField?
+    
+    var editMeme: Meme?
    
+    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var bottomToolbar: UIToolbar!
-    @IBOutlet weak var topToolbar: UIToolbar!
     @IBOutlet weak var memeImageView: UIImageView!
     
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var activityButton: UIBarButtonItem!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +46,13 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         activityButton.enabled = false
+        
+        if let meme = editMeme {
+            topText.text = meme.top
+            bottomText.text = meme.bottom
+            memeImageView.image = meme.image
+        }
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -140,20 +150,22 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     
     private func makeMemeImage() -> UIImage {
         
+        hideToolbars()
         UIGraphicsBeginImageContext(view.frame.size)
         view.drawViewHierarchyInRect(view.frame, afterScreenUpdates: true)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+        showToolbars()
         
         return image
     }
     
     private func hideToolbars() {
-        topToolbar.hidden = true
+        navBar.hidden = true
         bottomToolbar.hidden = true
     }
     private func showToolbars() {
-        topToolbar.hidden = true
+        navBar.hidden = false
         bottomToolbar.hidden = false
     }
     

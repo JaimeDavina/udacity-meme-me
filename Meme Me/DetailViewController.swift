@@ -17,4 +17,11 @@ class DetailViewController: UIViewController {
         super.viewWillAppear(animated)
         imageView.image = meme.memedImage
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showEditor" {
+            let destination = segue.destinationViewController as! EditorViewController
+            destination.editMeme = meme
+        }
+    }
 }
