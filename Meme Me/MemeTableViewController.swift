@@ -39,6 +39,10 @@ class MemeTableViewController: UITableViewController, UITableViewDelegate, UITab
         performSegueWithIdentifier("showDetail", sender: self)
     }
     
+    @IBAction func startEditing(sender: AnyObject?) {
+        tableView.setEditing(true, animated: true)
+    }
+    
     @IBAction func didPressAdd(sender: AnyObject) {
         performSegueWithIdentifier("showEditor", sender: self)
     }

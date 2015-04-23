@@ -23,8 +23,6 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     @IBOutlet weak var memeImageView: UIImageView!
     
     @IBOutlet weak var cameraButton: UIBarButtonItem!
-    @IBOutlet weak var activityButton: UIBarButtonItem!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +43,6 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         bottomText.delegate = self
         
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
-        activityButton.enabled = false
         
         if let meme = editMeme {
             topText.text = meme.top
@@ -191,7 +188,6 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             memeImageView.image = image
-            activityButton.enabled = true
         }
         dismissViewControllerAnimated(true, completion: nil)
     }

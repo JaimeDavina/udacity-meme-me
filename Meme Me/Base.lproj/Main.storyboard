@@ -55,6 +55,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Sent Memes" id="ak6-aN-mea">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="mTE-v5-zNZ">
+                            <connections>
+                                <action selector="startEditing:" destination="DnI-fL-Oef" id="yUG-Bt-9oD"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="o2a-7A-zJd">
                             <connections>
                                 <action selector="didPressAdd:" destination="DnI-fL-Oef" id="y6J-Zd-bSl"/>
@@ -181,7 +186,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mny-Cy-6FY">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="82w-DX-b4L">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
@@ -208,7 +213,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EUM-fx-Oaw" userLabel="TOP">
-                                <rect key="frame" x="0.0" y="104" width="600" height="56"/>
+                                <rect key="frame" x="0.0" y="100" width="600" height="56"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="48"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
@@ -234,20 +239,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="EUM-fx-Oaw" secondAttribute="centerX" id="1Kd-fo-mVJ"/>
-                            <constraint firstItem="EUM-fx-Oaw" firstAttribute="top" secondItem="mny-Cy-6FY" secondAttribute="top" constant="40" id="2vN-UC-UR2"/>
+                            <constraint firstItem="EUM-fx-Oaw" firstAttribute="top" secondItem="mny-Cy-6FY" secondAttribute="top" constant="80" id="2vN-UC-UR2"/>
                             <constraint firstAttribute="centerX" secondItem="f07-HB-hfA" secondAttribute="centerX" id="3er-xV-1b6"/>
                             <constraint firstAttribute="centerX" secondItem="7Ez-Yz-UBy" secondAttribute="centerX" id="5M7-LG-rbB"/>
-                            <constraint firstItem="mny-Cy-6FY" firstAttribute="top" secondItem="f07-HB-hfA" secondAttribute="bottom" id="E2e-jB-Sya"/>
+                            <constraint firstItem="mny-Cy-6FY" firstAttribute="top" secondItem="f07-HB-hfA" secondAttribute="top" id="E2e-jB-Sya"/>
                             <constraint firstAttribute="centerX" secondItem="mny-Cy-6FY" secondAttribute="centerX" id="ICt-bI-zan"/>
                             <constraint firstAttribute="width" secondItem="mny-Cy-6FY" secondAttribute="width" id="IWj-xL-DPk"/>
                             <constraint firstItem="82w-DX-b4L" firstAttribute="top" secondItem="7Ez-Yz-UBy" secondAttribute="bottom" constant="40" id="Klk-Am-u1L"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="mny-Cy-6FY" secondAttribute="bottom" id="OkJ-jf-5Kr"/>
                             <constraint firstAttribute="width" secondItem="f07-HB-hfA" secondAttribute="width" id="RG6-id-4uY"/>
                             <constraint firstAttribute="width" secondItem="82w-DX-b4L" secondAttribute="width" id="bsM-w6-9kC"/>
                             <constraint firstAttribute="centerX" secondItem="82w-DX-b4L" secondAttribute="centerX" id="c1o-hF-HhE"/>
                             <constraint firstItem="EUM-fx-Oaw" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" id="gUq-qG-Fkc"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="82w-DX-b4L" secondAttribute="bottom" id="hZe-Rd-D5e"/>
                             <constraint firstItem="f07-HB-hfA" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="jwS-mM-fE6"/>
+                            <constraint firstItem="mny-Cy-6FY" firstAttribute="bottom" secondItem="82w-DX-b4L" secondAttribute="bottom" id="tmC-YR-Gg4"/>
                             <constraint firstAttribute="width" secondItem="7Ez-Yz-UBy" secondAttribute="width" id="w8L-WX-ROG"/>
                         </constraints>
                     </view>
@@ -264,7 +269,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="activityButton" destination="Q8i-ZB-UmH" id="sTq-FN-qYn"/>
                         <outlet property="bottomText" destination="7Ez-Yz-UBy" id="dk6-q1-Axy"/>
                         <outlet property="bottomToolbar" destination="82w-DX-b4L" id="zgK-Fs-GbP"/>
                         <outlet property="cameraButton" destination="UtL-zx-YWy" id="n7x-64-g2e"/>
@@ -340,7 +344,7 @@
         <image name="table" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="shb-dK-k31"/>
-        <segue reference="OPE-Ln-TZc"/>
+        <segue reference="lDX-uD-PdC"/>
+        <segue reference="eDj-50-9CK"/>
     </inferredMetricsTieBreakers>
 </document>
