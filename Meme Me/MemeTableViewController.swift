@@ -10,15 +10,30 @@ import UIKit
 
 class MemeTableViewController: UITableViewController, UITableViewDelegate, UITableViewDataSource {
     
-   var selectedIndex: Int?
+    var selectedIndex: Int?
     
-   override func viewDidAppear(animated: Bool) {
+    override func viewDidLoad() {
+        navigationItem.leftBarButtonItem = editButtonItem()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
         if Meme.countAll() == 0 {
             performSegueWithIdentifier("showEditor", sender: self)
         }
         super.viewDidAppear(animated)
         tableView.reloadData()
     }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        switch editingStyle {
+        case .Delete:
+            Meme.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath.row], withRowAnimation: UITableViewRowAnimation.Automatic)
+        default:
+            return
+        }
+    }
+    
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Meme.countAll()
@@ -34,13 +49,30 @@ class MemeTableViewController: UITableViewController, UITableViewDelegate, UITab
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        selectedIndex = indexPath.row
-        performSegueWithIdentifier("showDetail", sender: self)
+    
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
     }
     
-    @IBAction func startEditing(sender: AnyObject?) {
-        tableView.setEditing(true, animated: true)
+    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.Delete
+    }
+    
+    override func setEditing(editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        tableView.setEditing(editing, animated: animated)
+        if editing {
+            navigationItem.rightBarButtonItem?.enabled = false
+        } else {
+            navigationItem.rightBarButtonItem?.enabled = true
+        }
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if !tableView.editing {
+            selectedIndex = indexPath.row
+            performSegueWithIdentifier("showDetail", sender: self)
+        }
     }
     
     @IBAction func didPressAdd(sender: AnyObject) {

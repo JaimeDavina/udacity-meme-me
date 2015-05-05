@@ -47,4 +47,12 @@ class Meme {
         }
         return nil
     }
+    
+    class func removeAtIndex(index: Int) -> Meme? {
+        if index > 0 && Meme.getStorage().memes.count > index {
+            var memes = Meme.getStorage().memes
+            memes.removeAtIndex(index)
+        }
+        return nil
+    }
 }
