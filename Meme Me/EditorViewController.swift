@@ -50,6 +50,7 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
             memeImageView.image = meme.image
         }
         
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -132,13 +133,15 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         let activity = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         activity.completionWithItemsHandler = { (type: String!, completed: Bool, returnedItems: [AnyObject]!, error: NSError!) in
             if completed {
+                var backgroundImage = self.memeImageView.image == nil ? UIImage() : self.memeImageView.image
                 var meme = Meme(
                     top: self.topText.text,
                     bottom: self.bottomText.text,
-                    image: self.memeImageView.image!,
+                    image: backgroundImage!,
                     memedImage: image
                 )
                 meme.save()
+                self.dismissViewControllerAnimated(true, completion: nil)
             }
         }
         presentViewController(activity, animated: true, completion: nil)
