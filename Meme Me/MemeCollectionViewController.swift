@@ -13,15 +13,18 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
     var selectedIndex: Int?
     
     override func viewDidLoad() {
+        // set the Edit/Done button to the nav bar left button
         navigationItem.leftBarButtonItem = editButtonItem()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        // Display editor automatically if no memes
         if Meme.countAll() == 0 {
             performSegueWithIdentifier("showEditor", sender: self)
         }
         collectionView!.reloadData()
+        // disable the button if there are no memes (after a delete)
         navigationItem.leftBarButtonItem?.enabled = Meme.countAll() > 0
     }
     
@@ -41,6 +44,7 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
     }
     
     @IBAction func didPressDelete(sender: UIButton) {
+        // need to get to the cell from the button
         let cell = sender.superview!.superview! as! MemeCollectionViewCell
         let index = collectionView!.indexPathForCell(cell)!
         Meme.removeAtIndex(index.row)

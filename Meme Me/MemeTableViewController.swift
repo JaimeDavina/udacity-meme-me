@@ -8,11 +8,14 @@
 
 import UIKit
 
+/// Shows the memes in a table view
 class MemeTableViewController: UITableViewController, UITableViewDelegate, UITableViewDataSource {
     
+    /// The index of the selected Meme
     var selectedIndex: Int?
     
     override func viewDidLoad() {
+        // set the Edit/Done button to the nav bar left button
         navigationItem.leftBarButtonItem = editButtonItem()
     }
     
@@ -22,11 +25,13 @@ class MemeTableViewController: UITableViewController, UITableViewDelegate, UITab
         if Meme.countAll() == 0 {
             performSegueWithIdentifier("showEditor", sender: self)
         }
+        // disable the button if there are no memes (after a delete)
         navigationItem.leftBarButtonItem?.enabled = Meme.countAll() > 0
         tableView.reloadData()
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        // only supports delete
         switch editingStyle {
         case .Delete:
             Meme.removeAtIndex(indexPath.row)
@@ -35,7 +40,6 @@ class MemeTableViewController: UITableViewController, UITableViewDelegate, UITab
             return
         }
     }
-    
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Meme.countAll()
@@ -62,6 +66,7 @@ class MemeTableViewController: UITableViewController, UITableViewDelegate, UITab
     
     override func setEditing(editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
+        // toggles the bar button item between Edit and Done
         tableView.setEditing(editing, animated: animated)
     }
     

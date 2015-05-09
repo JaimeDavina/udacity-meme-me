@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// MemeCollectionViewCell represents a cell in the sent memes collection view
 class MemeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var memeImageView: UIImageView!
     @IBOutlet weak var deleteButton: UIButton!

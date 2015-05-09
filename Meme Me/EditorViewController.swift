@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Allows text entry and image selection to create a Meme
 class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var topText: UITextField!
@@ -27,10 +28,14 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
-    
+   
+    /**
+    Sets up the view. Loads an existing Meme's data if one is set
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // font setup
         let memeTextAttributes = [
             NSStrokeColorAttributeName: UIColor(red: 0, green: 0, blue: 0, alpha: 1),
             NSForegroundColorAttributeName: UIColor(red: 1, green: 1, blue: 1, alpha: 1),
@@ -38,14 +43,17 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
             NSStrokeWidthAttributeName : -3
         ]
         
+        // text field setup
         topText.defaultTextAttributes = memeTextAttributes
         bottomText.defaultTextAttributes = memeTextAttributes
         topText.textAlignment = NSTextAlignment.Center
         bottomText.textAlignment = NSTextAlignment.Center
         
+        // set the delegate
         topText.delegate = self
         bottomText.delegate = self
         
+        // enable the camera
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         
         // if existing meme was set during segue to this controller
@@ -57,11 +65,13 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         
     }
     
+    /// Runs when the view appears
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()
     }
     
+    /// Runs when the view disappears
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
@@ -151,7 +161,11 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         presentViewController(activity, animated: true, completion: nil)
     }
     
+    /**
+    Creates an image from the text and background image
     
+    :returns: The composited image
+    */
     private func makeMemeImage() -> UIImage {
         
         hideToolbars()
@@ -168,6 +182,7 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         navBar.hidden = true
         bottomToolbar.hidden = true
     }
+    
     private func showToolbars() {
         navBar.hidden = false
         bottomToolbar.hidden = false
@@ -177,12 +192,14 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    /// brings up the camera roll
     @IBAction func didPressAlbum(sender: UIBarButtonItem) {
         let picker = UIImagePickerController()
         picker.delegate = self
         presentViewController(picker, animated: true, completion: nil)
     }
     
+    /// shows the camera via the UIImage picker
     @IBAction func didPressCamera(sender: UIBarButtonItem) {
         let picker = UIImagePickerController()
         picker.sourceType = UIImagePickerControllerSourceType.Camera

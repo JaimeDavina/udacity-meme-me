@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// MemeTableCell represents a row in the sent memes table view
 class MemeTableCell: UITableViewCell {
     @IBOutlet weak var memeImageView: UIImageView!
     @IBOutlet weak var memeLabel: UILabel!

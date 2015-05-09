@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Shows the meme in a full screen view
 class DetailViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
