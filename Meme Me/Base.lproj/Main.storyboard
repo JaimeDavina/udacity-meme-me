@@ -97,8 +97,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="112" height="112"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uzP-Y9-VPs">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uzP-Y9-VPs">
                                             <rect key="frame" x="8" y="8" width="96" height="96"/>
+                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </imageView>
                                         <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UXq-fH-Ph0">
                                             <rect key="frame" x="82" y="8" width="22" height="24"/>
@@ -134,7 +135,7 @@
                             <outlet property="delegate" destination="qKm-Db-SOj" id="JCm-fu-xvu"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="5bC-WT-znQ">
+                    <navigationItem key="navigationItem" title="Sent Memes" id="5bC-WT-znQ">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="z9f-Va-mas">
                             <connections>
                                 <segue destination="vXZ-lx-hvc" kind="presentation" id="nDv-kl-y5m"/>
@@ -251,7 +252,7 @@
                                 </items>
                             </navigationBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="EUM-fx-Oaw" secondAttribute="centerX" id="1Kd-fo-mVJ"/>
                             <constraint firstItem="EUM-fx-Oaw" firstAttribute="top" secondItem="mny-Cy-6FY" secondAttribute="top" constant="80" id="2vN-UC-UR2"/>
@@ -360,7 +361,7 @@
         <image name="table" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="shb-dK-k31"/>
-        <segue reference="nDv-kl-y5m"/>
+        <segue reference="eDj-50-9CK"/>
+        <segue reference="lDX-uD-PdC"/>
     </inferredMetricsTieBreakers>
 </document>

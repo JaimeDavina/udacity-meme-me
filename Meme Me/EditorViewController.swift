@@ -24,6 +24,10 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,12 +48,12 @@ class EditorViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         
+        // if existing meme was set during segue to this controller
         if let meme = editMeme {
             topText.text = meme.top
             bottomText.text = meme.bottom
             memeImageView.image = meme.image
         }
-        
         
     }
     

@@ -22,7 +22,6 @@ class Meme {
     }
     
     func save() {
-        // Add it to the memes array in the Application Delegate
         Meme.getStorage().memes.append(self)
     }
     
@@ -49,9 +48,8 @@ class Meme {
     }
     
     class func removeAtIndex(index: Int) -> Meme? {
-        if index > 0 && Meme.getStorage().memes.count > index {
-            var memes = Meme.getStorage().memes
-            memes.removeAtIndex(index)
+        if index >= 0 && Meme.getStorage().memes.count > index {
+            Meme.getStorage().memes.removeAtIndex(index)
         }
         return nil
     }

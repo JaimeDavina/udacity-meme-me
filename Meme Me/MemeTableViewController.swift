@@ -17,10 +17,12 @@ class MemeTableViewController: UITableViewController, UITableViewDelegate, UITab
     }
     
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        // Display editor automatically if no memes
         if Meme.countAll() == 0 {
             performSegueWithIdentifier("showEditor", sender: self)
         }
-        super.viewDidAppear(animated)
+        navigationItem.leftBarButtonItem?.enabled = Meme.countAll() > 0
         tableView.reloadData()
     }
     
@@ -28,7 +30,7 @@ class MemeTableViewController: UITableViewController, UITableViewDelegate, UITab
         switch editingStyle {
         case .Delete:
             Meme.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath.row], withRowAnimation: UITableViewRowAnimation.Automatic)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         default:
             return
         }
@@ -61,11 +63,6 @@ class MemeTableViewController: UITableViewController, UITableViewDelegate, UITab
     override func setEditing(editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         tableView.setEditing(editing, animated: animated)
-        if editing {
-            navigationItem.rightBarButtonItem?.enabled = false
-        } else {
-            navigationItem.rightBarButtonItem?.enabled = true
-        }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
